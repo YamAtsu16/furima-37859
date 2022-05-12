@@ -102,12 +102,12 @@ RSpec.describe 'ユーザー新規登録', type: :model do
     it 'emailに@が含まれていないと登録できない' do
       @user.email = 'testmail'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include('Email is invalid')
     end
     it 'passwordに全角文字が含まれていると登録できない' do
       @user.password = 'テストパスワード'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
   end
 end
