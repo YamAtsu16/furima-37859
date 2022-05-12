@@ -128,18 +128,16 @@
     </div>
     <ul class='item-lists'>
       <% if Item.exists? %>
-        <li class='list'>
-          <% @items.each do |item| %>
+        <% @items.each do |item| %>
+          <li class='list'>
             <%= link_to "#" do %>
               <div class='item-img-content'>
                 <%= image_tag item.image, class: "item-img" %>
-                <%# 商品が売れていればsold outを表示しましょう %>
                 <% if Order.exists? %>
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
                 </div>
                 <% end %>
-                <%# //商品が売れていればsold outを表示しましょう %>
               </div>
               <div class='item-info'>
                 <h3 class='item-name'>
@@ -154,11 +152,9 @@
                 </div>
               </div>
             <% end %>
-          <% end %>
-        </li>
+          </li>
+        <% end %>
       <% end%>
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
       <% unless Item.exists? %>
         <li class='list'>
           <%= link_to '#' do %>
@@ -178,8 +174,6 @@
           <% end %>
         </li>
       <% end %>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
   </div>
   <%# /商品一覧 %>
