@@ -31,28 +31,28 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
-    it 'category_idが空だと出品できない' do
-      @item.category_id = ''
+    it 'カテゴリーに「---」が選択されている場合は出品できない' do
+      @item.category_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
-    it 'condition_idが空だと出品できない' do
-      @item.condition_id = ''
+    it '商品の状態に「---」が選択されている場合は出品できない' do
+      @item.condition_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Condition can't be blank")
     end
-    it 'delivery_charge_idが空だと出品できない' do
-      @item.delivery_charge_id = ''
+    it '配送料の負担に「---」が選択されている場合は出品できない' do
+      @item.delivery_charge_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
     end
-    it 'prefecture_idが空だと出品できない' do
-      @item.prefecture_id = ''
+    it '発送元の地域に「---」が選択されている場合は出品できない' do
+      @item.prefecture_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture can't be blank")
     end
-    it 'shipping_date_idが空だと出品できない' do
-      @item.shipping_date_id = ''
+    it '発送までの日数に「---」が選択されている場合は出品できない' do
+      @item.shipping_date_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping date can't be blank")
     end
@@ -62,14 +62,19 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Price is not a number')
     end
     it 'priceが300以上でないと出品できない' do
-      @item.price = Faker::Number.between(to: 299)
+      @item.price = Faker::Number.between(from: 0, to: 299)
       @item.valid?
       expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
     end
     it 'priceが9999999以下でないと出品できない' do
-      @item.price = Faker::Number.between(from: 100_000_000)
+      @item.price = Faker::Number.between(from: 100_000_000, to: 999_000_000)
       @item.valid?
       expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
+    end
+    it 'userが紐づいていないと出品できない' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
     end
   end
 end
