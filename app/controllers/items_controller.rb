@@ -50,6 +50,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if current_user.id != @item.user_id
       redirect_to root_path 
+    elsif Order.exists?(item_id: @item.id)
+      redirect_to root_path 
     end
   end
 
