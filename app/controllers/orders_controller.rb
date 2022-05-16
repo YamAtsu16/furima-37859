@@ -9,14 +9,13 @@ class OrdersController < ApplicationController
 
   def create
     @buyer_order = BuyerOrder.new(order_params)
-    @buyer_order.save
-    redirect_to action: :index
-    # if @buyer_order.valid?
-    #   @buyer_order.save
-    #   redirect_to root_path
-    # else
-    #   render :index
-    # end
+    if @buyer_order.valid?
+      @buyer_order.save
+      redirect_to root_path
+    else
+      @item = Item.find(params[:item_id])
+      render :index
+    end
   end
 
   private

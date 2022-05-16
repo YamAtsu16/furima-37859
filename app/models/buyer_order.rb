@@ -3,9 +3,9 @@ class BuyerOrder
   attr_accessor :postal_code, :municipalities, :address, :building, :tell, :prefecture_id, :user_id, :item_id
 
   with_options presence: true do
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
-    validates :tell, format: {with: /\A[0-9]{11}\z/}
-    validates :prefecture_id, numericality: {other_than: 0}
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :tell, format: {with: /\A[0-9]{11}\z/, message: "is invalid"}
+    validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
     validates :municipalities, :address, :user_id, :item_id
   end
 
