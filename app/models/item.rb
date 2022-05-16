@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_date
 
   belongs_to :user
+  has_one :order
   has_one_attached :image
 
   validates :name, :text, :image, :price, :category_id, :condition_id, :delivery_charge_id, :prefecture_id, :shipping_date_id,
