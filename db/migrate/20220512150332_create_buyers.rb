@@ -7,7 +7,7 @@ class CreateBuyers < ActiveRecord::Migration[6.0]
       t.string :building, null: false
       t.string :tell , null: false
       t.integer :prefecture_id, null: false
-      t.references :item, null: false, foreign_key: true
+      t.references :order, null: false, foreign_key: true
       t.timestamps
     end
   end
