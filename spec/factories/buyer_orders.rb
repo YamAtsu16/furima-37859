@@ -7,7 +7,5 @@ FactoryBot.define do
     address        { Faker::Lorem.sentence }
     building       { Faker::Lorem.sentence }
     tell           { "09012341234" }
-    user_id        {"1"}
-    item_id        {"1"}
   end
 end
