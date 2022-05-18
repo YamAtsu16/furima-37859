@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe BuyerOrder, type: :model do
   before do
-    @buyer_order = @buyer_order = FactoryBot.build(:buyer_order)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @buyer_order = FactoryBot.build(:buyer_order, user_id: user.id, item_id: item.id)
+    sleep 0.1
   end
 
   context '商品を購入できる時' do
@@ -39,6 +42,16 @@ RSpec.describe BuyerOrder, type: :model do
       @buyer_order.tell = ""
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Tell can't be blank")
+    end
+    it 'tellが9桁以下だと購入できない' do
+      @buyer_order.tell = "123456789"
+      @buyer_order.valid?
+      expect(@buyer_order.errors.full_messages).to include("Tell is invalid")
+    end
+    it 'tellが12桁以上だと購入できない' do
+      @buyer_order.tell = "123456789012"
+      @buyer_order.valid?
+      expect(@buyer_order.errors.full_messages).to include("Tell is invalid")
     end
     it 'postal_codeが7文字の半角数字でないと購入できない' do
       @buyer_order.postal_code = "１２３-１２３４"
