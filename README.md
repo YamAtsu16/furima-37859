@@ -50,7 +50,7 @@
 | municipalities   | string      | null: false                      |
 | address          | string      | null: false                      |
 | building         | string      |                                  |
-| tell             | string      | null: false                      |
+| tel              | string      | null: false                      |
 | order            | references  | null: false, foreign_key: true   |
 
 ### Association

@@ -6,6 +6,6 @@ FactoryBot.define do
     municipalities { Faker::Lorem.sentence }
     address        { Faker::Lorem.sentence }
     building       { Faker::Lorem.sentence }
-    tell           { "09012341234" }
+    tel            { "09012341234" }
   end
 end

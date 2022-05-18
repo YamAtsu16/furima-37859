@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:buyer_order).permit(:postal_code, :municipalities, :address, :building, :tell, :prefecture_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:buyer_order).permit(:postal_code, :municipalities, :address, :building, :tel, :prefecture_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def move_to_rootpath

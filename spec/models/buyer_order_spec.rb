@@ -38,18 +38,18 @@ RSpec.describe BuyerOrder, type: :model do
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Address can't be blank")
     end
-    it 'tellが空だと購入できない' do
-      @buyer_order.tell = ""
+    it 'telが空だと購入できない' do
+      @buyer_order.tel = ""
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Tell can't be blank")
     end
-    it 'tellが9桁以下だと購入できない' do
-      @buyer_order.tell = "123456789"
+    it 'telが9桁以下だと購入できない' do
+      @buyer_order.tel = "123456789"
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Tell is invalid")
     end
-    it 'tellが12桁以上だと購入できない' do
-      @buyer_order.tell = "123456789012"
+    it 'telが12桁以上だと購入できない' do
+      @buyer_order.tel = "123456789012"
       @buyer_order.valid?
       expect(@buyer_order.errors.full_messages).to include("Tell is invalid")
     end
